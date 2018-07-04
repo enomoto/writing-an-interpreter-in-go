@@ -15,17 +15,6 @@ func New(input string) *Lexer {
   return l
 }
 
-func (l *Lexer) readChar() {
-  // 終端に達したかのチェック
-  if l.readPosition >= len(l.input) {
-    l.ch = 0
-  } else {
-    l.ch = l.input[l.readPosition]
-  }
-  l.position = l.readPosition
-  l.readPosition += 1
-}
-
 func (l *Lexer) NextToken() token.Token {
   var tok token.Token
 
@@ -81,8 +70,15 @@ func (l *Lexer) NextToken() token.Token {
   return tok
 }
 
-func newToken(tokenType token.TokenType, ch byte) token.Token {
-  return token.Token{Type: tokenType, Literal: string(ch)}
+func (l *Lexer) readChar() {
+  // 終端に達したかのチェック
+  if l.readPosition >= len(l.input) {
+    l.ch = 0
+  } else {
+    l.ch = l.input[l.readPosition]
+  }
+  l.position = l.readPosition
+  l.readPosition += 1
 }
 
 func (l *Lexer) readIdentifier() string {
@@ -114,3 +110,8 @@ func (l *Lexer) readNumber() string {
 func isDigit(ch byte) bool {
   return '0' <= ch && ch <= '9'
 }
+
+func newToken(tokenType token.TokenType, ch byte) token.Token {
+  return token.Token{Type: tokenType, Literal: string(ch)}
+}
+
