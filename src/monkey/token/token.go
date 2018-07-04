@@ -30,6 +30,9 @@ const (
   LBRACE = "{"
   RBRACE = "}"
 
+  EQ = "=="
+  NOT_EQ = "!="
+
   // キーワード
   FUNCTION = "FUNCTION"
   LET = "LET"
