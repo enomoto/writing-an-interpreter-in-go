@@ -48,3 +48,12 @@ type Identifier struct {
 
 func (i *Identifier) expressionNode() {}
 func (i *Identifier) TokenLiteral() string { return i.Token.Literal }
+
+// return 文 (return <expression>;) を表現する構造体
+type ReturnStatement struct {
+  Token token.Token // token.RETURN トークン
+  ReturnValue Experession
+}
+
+func (rs *ReturnStatement) statementNode() {}
+func (rs *ReturnStatement) TokenLiteral() string { return rs.Token.Literal }
