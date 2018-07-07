@@ -4,6 +4,7 @@ import (
   "testing"
   "monkey/ast"
   "monkey/lexer"
+  "fmt"
 )
 
 func TestLetStatements(t *testing.T) {
@@ -15,6 +16,8 @@ func TestLetStatements(t *testing.T) {
 
   l := lexer.New(input)
   p := New(l)
+  fmt.Print(p, "\n")
+
 
   program := p.ParseProgram()
   if program == nil {
@@ -47,7 +50,16 @@ func testLetStatement(t *testing.T, s ast.Statement, name string) bool {
     return false
   }
 
-  // TODO: ここにテストコードの続きを実装する
+  letStmt, ok := s.(*ast.LetStatement)
+  if !ok {
+    t.Errorf("letStmt.Name.Value not '%s'. got=%s", name, letStmt.Name.Value)
+    return false
+  }
+
+  if letStmt.Name.Value != name {
+    t.Errorf("letStmt.Name.TokenLiteral() not '%s'. got=%s", name, letStmt.Name.TokenLiteral())
+    return false
+  }
 
   return true
 }
