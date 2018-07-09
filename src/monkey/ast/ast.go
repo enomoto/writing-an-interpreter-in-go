@@ -13,7 +13,7 @@ type Statement interface {
   statementNode()
 }
 
-type Experession interface {
+type Expression interface {
   Node
   expressionNode()
 }
@@ -35,7 +35,7 @@ func (p *Program) TokenLiteral() string {
 type LetStatement struct {
   Token token.Token // token.LET トークン
   Name *Identifier
-  Value Experession
+  Value Expression
 }
 
 func (ls *LetStatement) statementNode() {}
@@ -52,8 +52,9 @@ func (i *Identifier) TokenLiteral() string { return i.Token.Literal }
 // return 文 (return <expression>;) を表現する構造体
 type ReturnStatement struct {
   Token token.Token // token.RETURN トークン
-  ReturnValue Experession
+  ReturnValue Expression
 }
 
 func (rs *ReturnStatement) statementNode() {}
 func (rs *ReturnStatement) TokenLiteral() string { return rs.Token.Literal }
+
