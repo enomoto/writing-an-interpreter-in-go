@@ -3,64 +3,64 @@ package token
 type TokenType string
 
 const (
-  ILLEGAL = "ILLEGAL"
-  EOF     = "EOF"
+	ILLEGAL = "ILLEGAL"
+	EOF     = "EOF"
 
-  // 識別子 + リテラル
-  IDENT = "IDENT"
-  INT = "INT"
+	// 識別子 + リテラル
+	IDENT = "IDENT"
+	INT   = "INT"
 
-  // 演算子
-  ASSIGN = "="
-  PLUS = "+"
-  MINUS = "-"
-  BANG = "!"
-  ASTERISK = "*"
-  SLASH = "/"
+	// 演算子
+	ASSIGN   = "="
+	PLUS     = "+"
+	MINUS    = "-"
+	BANG     = "!"
+	ASTERISK = "*"
+	SLASH    = "/"
 
-  LT = "<"
-  GT = ">"
+	LT = "<"
+	GT = ">"
 
-  // デリミタ
-  COMMA = ","
-  SEMICOLON = ";"
+	// デリミタ
+	COMMA     = ","
+	SEMICOLON = ";"
 
-  LPAREN = "("
-  RPAREN = ")"
-  LBRACE = "{"
-  RBRACE = "}"
+	LPAREN = "("
+	RPAREN = ")"
+	LBRACE = "{"
+	RBRACE = "}"
 
-  EQ = "=="
-  NOT_EQ = "!="
+	EQ     = "=="
+	NOT_EQ = "!="
 
-  // キーワード
-  FUNCTION = "FUNCTION"
-  LET = "LET"
-  TRUE = "TRUE"
-  FALSE = "FALSE"
-  IF = "IF"
-  RETURN = "RETURN"
-  ELSE = "ELSE"
+	// キーワード
+	FUNCTION = "FUNCTION"
+	LET      = "LET"
+	TRUE     = "TRUE"
+	FALSE    = "FALSE"
+	IF       = "IF"
+	RETURN   = "RETURN"
+	ELSE     = "ELSE"
 )
 
 type Token struct {
-  Type    TokenType
-  Literal string
+	Type    TokenType
+	Literal string
 }
 
 var keywords = map[string]TokenType{
-  "fn": FUNCTION,
-  "let": LET,
-  "true": TRUE,
-  "false": FALSE,
-  "if": IF,
-  "return": RETURN,
-  "else": ELSE,
+	"fn":     FUNCTION,
+	"let":    LET,
+	"true":   TRUE,
+	"false":  FALSE,
+	"if":     IF,
+	"return": RETURN,
+	"else":   ELSE,
 }
 
 func LookupIdent(ident string) TokenType {
-  if tok, ok:= keywords[ident]; ok {
-    return tok
-  }
-  return IDENT
+	if tok, ok := keywords[ident]; ok {
+		return tok
+	}
+	return IDENT
 }
