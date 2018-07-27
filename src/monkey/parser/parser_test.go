@@ -201,8 +201,8 @@ func TestBooleanExpression(t *testing.T) {
 		if !ok {
 			t.Fatalf("exp not *ast.Boolean. got=%T", stmt.Expression)
 		}
-		if bool.Value != true {
-			t.Errorf("bool.Value not %t. got=%t", true, bool.Value)
+		if bool.Value != tt.expectedBoolean {
+			t.Errorf("bool.Value not %t. got=%t", tt.expectedBoolean, bool.Value)
 		}
 	}
 }
